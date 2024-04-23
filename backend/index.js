@@ -2,6 +2,7 @@ import express, { Router } from "express";
 import dotenv from "dotenv"
 import mongoose from "mongoose";
 import Routes from "./Routes/Adminroutes.js";
+import cors from "cors"
 const app = express();
 dotenv.config();
 import Credentials from "./Models/Crediantials.js";
@@ -11,6 +12,13 @@ app.use(express.json());
 const PORT = process.env.PORT;
 const mongoURL = process.env.mongoURL;
 console.log(PORT);
+
+app.use(
+  cors({
+    origin: true,
+    credentials:true
+  })
+)
 
 app.use('/' , Adminroutes)
 

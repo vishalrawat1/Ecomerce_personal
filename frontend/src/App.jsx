@@ -4,10 +4,13 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './Components/Home';
 import Register from './Components/Register';
 import Login from './Components/Login';
+import { Provider } from 'react-redux';
+import { myStore } from './Redux/Store/myStore.jsx';
 
 const App = () => {
   return (
     <div>
+    <Provider store= { myStore }>
       <BrowserRouter>
         <Navbar />
         <Routes>
@@ -16,8 +19,9 @@ const App = () => {
           <Route path="/register" element={<Register />} />
         </Routes>
       </BrowserRouter>
+    </Provider>
     </div>
   );
-}
+};
 
 export default App;

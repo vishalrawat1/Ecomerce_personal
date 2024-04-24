@@ -1,7 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 const Navbar = () => {
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const user = useSelector((state) => state.user);
+    // console.log(user.name);
+    const function1 = () => {
+        // console.log("sdfas");
+    }
+
     return (
         <div>
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -37,12 +46,32 @@ const Navbar = () => {
                             <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
                             <button className="btn btn-outline-success" type="submit">Search</button>
                         </form>
-                        <ul>
-                            <Link className="nav-link" to="/login" aria-current="page">Login</Link>
-                        </ul>
-                        <ul>
-                            <Link className="nav-link" to="/register" aria-current="page">registration</Link>
-                        </ul>
+                        {!user.name && (
+                            <ul>
+                                <Link className="nav-link" to="/login" aria-current="page" onClick={function1}>Login</Link>
+                            </ul>
+
+                        )}
+                        {
+                            !user.name && (
+
+                                <ul>
+                                    <Link className="nav-link" to="/register" aria-current="page">registration</Link>
+                                </ul>
+
+                            )
+                        }
+                        {
+                            user.name && (
+
+                                <ul>
+                                    <Link className="nav-link" to="/Logoutuser" aria-current="page">Logout</Link>
+                                </ul>
+
+                            )
+                        }
+
+
                     </div>
                 </div>
             </nav>

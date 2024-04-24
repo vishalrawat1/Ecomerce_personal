@@ -16,7 +16,7 @@ export const Loginuser = (userdetail) => async (dispatch) => {
         console.log(response);
         dispatch({
             type: LOGIN_USER_SUCCESS,
-            payload: { user: response.data?.admin, message: response.data?.message },
+            payload: { user: response.data?.user, message: response.data?.message },
         });
     } catch (error) {
         dispatch({
@@ -32,7 +32,7 @@ export const Registeruser = (userdetail) => async (dispatch) => {
         console.log(response);
         dispatch({
             type: REGISTER_USER_SUCCESS,
-            payload: { user: response?.data.admin, message: response.data.message },
+            payload: { user: response?.data.user, message: response.data.message },
         });
     } catch (error) {
         dispatch({

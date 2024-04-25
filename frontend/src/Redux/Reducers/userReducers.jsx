@@ -16,10 +16,14 @@ export const userReducers = (state = initialState, action) => {
         case LOGIN_USER_SUCCESS:
             localStorage.setItem("user", JSON.stringify(action.payload.user));
             // console.log(action.payload.user);
+            
+            alert("Login successful");
             toast.success("Login Successful");
             return { ...state, user: action.payload.user, session: true };
         
         case LOGIN_USER_FAILURE:
+            alert("Try Again Later");
+            toast.error("try again later")
             toast.error(action.payload.message);
             return state;
         

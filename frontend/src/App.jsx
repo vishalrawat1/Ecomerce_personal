@@ -1,12 +1,13 @@
 import React from 'react';
 import Navbar from './Components/Navbar';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './Components/Home';
+import Home from './Components/c2/Home.jsx';
 import Register from './Components/Register';
 import Login from './Components/Login';
 import { Provider } from 'react-redux';
 import { myStore } from './Redux/Store/myStore.jsx';
 import Logoutuser from './Components/Logoutuser.jsx';
+import Additems from './Components/PutProduct/Additems.jsx';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/Logoutuser" element={<Logoutuser />} />
+          <Route path="/Additems" element={<Additems />} />
         </Routes>
       </BrowserRouter>
     </Provider>

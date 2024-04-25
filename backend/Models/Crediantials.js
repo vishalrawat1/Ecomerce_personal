@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema, set } from "mongoose";
 
 const credentialsSchema = Schema({
     name: {
@@ -20,6 +20,10 @@ const credentialsSchema = Schema({
     address: {
         type: String,
         required: true,
+    },
+    isadmin:{
+        type: Boolean,
+        default:false
     }
 });
 

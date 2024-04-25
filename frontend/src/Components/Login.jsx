@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Loginuser } from '../Redux/Action/actionTypes';
-
+import { Navigate, useNavigate } from 'react-router-dom';
 const Login = () => {
+  const navigate = useNavigate();
   const initialFormValues = { email: '', password: '' };
   const dispatch = useDispatch();
   const [formValues, setFormValues] = useState(initialFormValues);
@@ -19,6 +20,7 @@ const Login = () => {
     setLoading(true);
     try {
       await dispatch(Loginuser(formValues));
+      navigate("/");
     } catch (error) {
       setError('Login failed. Please check your credentials.');
     } finally {

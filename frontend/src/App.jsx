@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 import { myStore } from './Redux/Store/myStore.jsx';
 import Logoutuser from './Components/Logoutuser.jsx';
 import Additems from './Components/PutProduct/Additems.jsx';
+import Toprated from './Components/Toprated.jsx';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/Logoutuser" element={<Logoutuser />} />
           <Route path="/Additems" element={<Additems />} />
+          <Route path="/Toprated" element={<Toprated />} />
         </Routes>
       </BrowserRouter>
     </Provider>

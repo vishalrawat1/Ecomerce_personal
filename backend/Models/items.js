@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+import mongoose, { Schema, set } from "mongoose";
 
-const itemSchema = new mongoose.Schema({
+const itemSchema = mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -18,10 +18,13 @@ const itemSchema = new mongoose.Schema({
         required: true
     },
     image: {
+        imageName: String,
         data: Buffer,
-        contentType:String,
-        require : true
+        contentType: String,
     },
+    imageLink:{
+        type:String,
+    }
 });
 
 const Item = mongoose.model("Item", itemSchema);

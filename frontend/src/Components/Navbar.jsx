@@ -1,8 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import axios, { all } from 'axios';
+import { set } from 'mongoose';
 const Navbar = () => {
-
+    const [first, setfirst] = useState([]);
+    useEffect(() => {
+        axios.get('http://localhost:5000/getitems')
+            .then((res) => {
+                const allCategories = Array.from(new Set(res.data.data.map(item => item.category)));
+                const first = allCategories; // This will log an array of all unique categories
+                setfirst(first);
+                console.log(first);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, []);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const user = useSelector((state) => state.user);
@@ -32,26 +46,25 @@ const Navbar = () => {
                                     Category
                                 </Link>
                                 <ul className="dropdown-menu">
-                                    <li><Link className="dropdown-item" to="#">Action 1</Link></li>
-                                    <li><Link className="dropdown-item" to="#">Action 2</Link></li>
-                                    <li><hr className="dropdown-divider" /></li>
-                                    <li><Link className="dropdown-item" to="#">Something else here</Link></li>
+                                    {first.map((first , index) => (
+                                        <li key={index}><Link className="dropdown-item" to="#">{first}</Link></li>
+                                    ))}
                                 </ul>
                             </li>
                             {
-                            user.isadmin && (
+                                user.isadmin && (
 
-                                <ul>
-                                    <Link className="nav-link" to="/Additems" aria-current="page">Additems</Link>
-                                </ul>
+                                    <ul>
+                                        <Link className="nav-link" to="/Additems" aria-current="page">Additems</Link>
+                                    </ul>
 
-                            )
-                        }
+                                )
+                            }
                             <li className="nav-item">
                                 <Link className="nav-link disabled" to="#" aria-disabled="true">Disabled</Link>
                             </li>
                         </ul>
-                        
+
                         <form className="d-flex" role="search">
                             <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
                             <button className="btn btn-outline-success" type="submit">Search</button>
